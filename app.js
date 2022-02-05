@@ -1,1 +1,8 @@
-const express = requie
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.end("HOLA");
+});
+
+app.listen(3000);
