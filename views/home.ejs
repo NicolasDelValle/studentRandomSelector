@@ -13,7 +13,7 @@
     <link rel="icon" href="assets/icon.jpg" />
     <title>SSRandom</title>
   </head>
-  <body class="bg-light">
+  <body onload="startFunction()" class="bg-light">
     <%- include("partials/navBar") %>
     <div class="container">
       <div class="d-grid gap-2 p-4 my-4 border shadow">
@@ -33,7 +33,12 @@
 
       <div class="p-4 my-4 border shadow">
         <div class="btn-group d-flex mb-3">
-          <button id="save-on-memory" href="#" class="btn btn-primary">
+          <button
+            id="save-on-memory"
+            onclick="guardarEnMemoria()"
+            href="#"
+            class="btn btn-primary"
+          >
             Guardar en memoria
           </button>
           <button id="load-from-memory" href="#" class="btn btn-primary ms-2">
@@ -43,7 +48,6 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Participantes</th>
             </tr>
           </thead>
