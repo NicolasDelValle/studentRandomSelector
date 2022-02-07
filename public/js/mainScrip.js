@@ -1,9 +1,12 @@
+let listaParaGuardar = "";
+
 document.querySelector("#add-list").addEventListener("click", (e) => {
-  const lista = document.querySelector("#input-list").value + ",";
+  const lista = document.querySelector("#input-list").value.trim() + ",";
   listar(lista);
 });
 
 function listar(lista) {
+  listaParaGuardar += lista;
   if (verificarContenido(lista)) {
     document.querySelector("#input-list").style.borderColor = "#adb5bd"; //cambio de color(gris)
     //string to array
@@ -31,17 +34,24 @@ function listar(lista) {
 }
 
 function verificarContenido(lista) {
-  if (lista.trim() === "") {
+  if (lista === "") {
     return false;
   } else {
     return true;
   }
 }
 
-function guardarEnMemoria(lista) {
-  if (window.localStorage.getItem("lista-alumnos-ssr") !== null) {
-    console.log(window.localStorage.getItem("lista-alumnos-ssr"));
+function guardarEnMemoria() {
+  clearTimeout(myTimeout);
+  window.localStorage.setItem("lista-alumnos-ssr", listaParaGuardar);
+}
+
+function verificarMemoria() {
+  if (window.localStorage.getItem("lista-alumnos-ssr") === null) {
+    document.querySelector("#load-from-memory").setAttribute("disabled", "");
   } else {
-    window.localStorage.setItem("lista-alumnos-ssr", lista);
+    document.querySelector("#load-from-memory").removeAttribute("disabled");
   }
+  console.log("a");
+  setTimeout(verificarMemoria, 500);
 }
