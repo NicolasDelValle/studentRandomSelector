@@ -1,4 +1,5 @@
 let listaParaGuardar = "";
+let arrayParaSortear = [];
 
 document.querySelector("#add-list").addEventListener("click", (e) => {
   const lista = document.querySelector("#input-list").value.trim() + ",";
@@ -20,6 +21,7 @@ function listar(lista) {
       .trim()
       .split(",")
       .filter(Boolean);
+    arrayParaSortear = arrayParaSortear.concat(listaToArray);
     console.log(listaToArray);
     //Renderea el array
     for (const [index, value] of listaToArray.entries()) {
@@ -50,8 +52,6 @@ function guardarEnMemoria() {
   }
 }
 
-function cargarDeMemoria() {}
-
 function verificarMemoria() {
   if (window.localStorage.getItem("lista-alumnos-ssr") === null) {
     document.querySelector("#load-from-memory").setAttribute("disabled", "");
@@ -74,4 +74,30 @@ function verificarGuardado() {
   }
 
   setTimeout(verificarGuardado, 50);
+}
+
+function vaciarMemoria() {
+  window.localStorage.removeItem("lista-alumnos-ssr");
+}
+function vaciarLista() {
+  document.querySelector("#tbody-list").innerHTML = "";
+  arrayParaSortear = [];
+  document.querySelector("#usuario-sorteado").innerHTML = "";
+}
+
+function listarDesdeMemory() {
+  listaParaGuardar = window.localStorage.getItem("lista-alumnos-ssr");
+  document.querySelector("#tbody-list").innerHTML = "";
+  listar(listaParaGuardar);
+}
+
+function sortear() {
+  if (arrayParaSortear.length === 0) {
+    document.querySelector("#usuario-sorteado").innerHTML = "";
+  } else {
+    let sorteado =
+      Math.floor(Math.random() * (arrayParaSortear.length - 0)) + 0;
+    document.querySelector("#usuario-sorteado").innerHTML =
+      arrayParaSortear[sorteado];
+  }
 }

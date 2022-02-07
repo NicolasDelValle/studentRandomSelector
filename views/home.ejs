@@ -28,15 +28,21 @@
       </div>
 
       <div class="p-4 my-4 border shadow">
-        <h1>Resultado</h1>
+        <h1 class="border-bottom border-3">
+          Resultado: <span id="usuario-sorteado"></span>
+        </h1>
       </div>
-
+      <div class="d-grid gap-2">
+        <button id="sortear-btn" onclick="sortear()" class="btn btn-primary">
+          Sortear
+        </button>
+      </div>
       <div class="p-4 my-4 border shadow">
         <span
           class="bg-warning border border-dark rounded-pill px-2 text-danger fs-6"
           >Advertencia: Al cargar se borrara todo lo que no esta guardado</span
         >
-        <div class="btn-group d-flex mb-3 mt-3">
+        <div class="btn-group d-flex mt-3">
           <button
             id="save-on-memory"
             onclick="guardarEnMemoria()"
@@ -47,10 +53,29 @@
             Guardar en memoria
           </button>
 
-          <button id="load-from-memory" href="#" class="btn btn-primary ms-2">
+          <button
+            id="load-from-memory"
+            onclick="listarDesdeMemory()"
+            href="#"
+            class="btn btn-primary ms-2"
+          >
             Cargar de memoria
           </button>
         </div>
+        <button
+          type="button"
+          onclick="vaciarMemoria()"
+          class="btn btn-link m-0 p-0"
+        >
+          Vaciar Memoria
+        </button>
+        <button
+          type="button"
+          onclick="vaciarLista()"
+          class="btn btn-link ms-2 p-0"
+        >
+          Vaciar Lista
+        </button>
         <table class="table">
           <thead>
             <tr>
