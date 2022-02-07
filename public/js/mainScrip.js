@@ -2,13 +2,16 @@ document.querySelector("#add-list").addEventListener("click", (e) => {
   const lista = document.querySelector("#input-list").value + ",";
 
   const check = document.querySelector("#save-on-memory").checked;
-  verificarContenido(lista, check);
+  verificarContenido(lista);
 });
 
-function verificarContenido(lista, check) {
+function verificarContenido(lista) {
   if (lista.trim() === "") {
     document.querySelector("#input-list").style.borderColor = "#f00";
   } else {
+    if (check) {
+      guardarEnMemoria(lista);
+    }
     document.querySelector("#input-list").style.borderColor = "#adb5bd";
     const listaToArray = lista
       .replace(/\n|\r/g, "")
@@ -27,4 +30,8 @@ function verificarContenido(lista, check) {
     }
     document.querySelector("#input-list").value = "";
   }
+}
+
+function guardarEnMemoria(lista) {
+  localStorage.setItem("lista-alumnos-ssr", lista);
 }
