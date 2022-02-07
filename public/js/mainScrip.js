@@ -5,7 +5,7 @@ document.querySelector("#add-list").addEventListener("click", (e) => {
   verificarContenido(lista);
 });
 
-function verificarContenido(lista) {
+function verificarContenido(lista, check) {
   if (lista.trim() === "") {
     document.querySelector("#input-list").style.borderColor = "#f00";
   } else {
