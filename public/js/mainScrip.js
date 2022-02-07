@@ -33,5 +33,5 @@ function verificarContenido(lista, check) {
 }
 
 function guardarEnMemoria(lista) {
-  localStorage.setItem("lista-alumnos-ssr", lista);
+  window.localStorage.setItem("lista-alumnos-ssr", lista);
 }
