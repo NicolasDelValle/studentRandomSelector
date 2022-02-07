@@ -59,15 +59,19 @@ function verificarMemoria() {
     document.querySelector("#load-from-memory").removeAttribute("disabled");
   }
 
-  setTimeout(verificarMemoria, 300);
+  setTimeout(verificarMemoria, 50);
 }
 
 function verificarGuardado() {
   if (window.localStorage.getItem("lista-alumnos-ssr") === listaParaGuardar) {
     document.querySelector("#save-on-memory").setAttribute("disabled", "");
   } else {
-    document.querySelector("#save-on-memory").removeAttribute("disabled");
+    if (listaParaGuardar.trim() === "") {
+      document.querySelector("#save-on-memory").setAttribute("disabled", "");
+    } else {
+      document.querySelector("#save-on-memory").removeAttribute("disabled");
+    }
   }
 
-  setTimeout(verificarMemoria, 300);
+  setTimeout(verificarGuardado, 50);
 }
