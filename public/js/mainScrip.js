@@ -1,10 +1,9 @@
 document.querySelector("#add-list").addEventListener("click", (e) => {
   const lista = document.querySelector("#input-list").value + ",";
-  listar(lista, check);
+  listar(lista);
 });
 
-function listar(lista, check) {
-  console.log(check);
+function listar(lista) {
   if (verificarContenido(lista)) {
     document.querySelector("#input-list").style.borderColor = "#adb5bd"; //cambio de color(gris)
     //string to array
@@ -15,19 +14,16 @@ function listar(lista, check) {
       .filter(Boolean);
     console.log(listaToArray);
     //Renderea el array
-    for (const item of listaToArray) {
+    for (const [index, value] of listaToArray.entries()) {
       document.querySelector("#tbody-list").insertAdjacentHTML(
         "beforeend",
         `<tr>
-              <th scope="row"></th>
-              <td>${item}</td>
+              <th scope="row">${index + 1}</th>
+              <td>${value}</td>
             </tr>`
       );
     }
     //Guardado en memoria
-    if (check) {
-      guardarEnMemoria(lista);
-    }
     document.querySelector("#input-list").value = ""; //
   } else {
     document.querySelector("#input-list").style.borderColor = "#f00"; //cambio de color(rojo)
