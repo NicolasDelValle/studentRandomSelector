@@ -1,5 +1,5 @@
 document.querySelector("#add-list").addEventListener("click", (e) => {
-  const lista = document.querySelector("#input-list").value;
+  const lista = document.querySelector("#input-list").value + ",";
 
   const check = document.querySelector("#save-on-memory").checked;
   verificarContenido(lista, check);
@@ -10,22 +10,21 @@ function verificarContenido(lista, check) {
     document.querySelector("#input-list").style.borderColor = "#f00";
   } else {
     document.querySelector("#input-list").style.borderColor = "#adb5bd";
-    const listaToArray = lista.trim().split(",").filter(Boolean);
+    const listaToArray = lista
+      .replace(/\n|\r/g, "")
+      .trim()
+      .split(",")
+      .filter(Boolean);
     console.log(listaToArray);
-
-    if (listaToArray.lenght === undefined && lista !== "") {
-      console.log("es un solo item");
-    } else {
-      /* for (const item, index of lista) {
+    for (const item of listaToArray) {
       document.querySelector("#tbody-list").insertAdjacentHTML(
         "beforeend",
         `<tr>
-              <th scope="row">${index + 1}</th>
+              <th scope="row"></th>
               <td>${item}</td>
             </tr>`
       );
-    } */
-      console.log("Hay mas de un item");
     }
+    document.querySelector("#input-list").value = "";
   }
 }
